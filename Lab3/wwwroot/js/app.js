@@ -11,7 +11,7 @@ form.addEventListener('submit', async (event) => {
     const payload = {
         leftOperand: Number(document.getElementById('leftOperand').value),
         rightOperand: Number(document.getElementById('rightOperand').value),
-        operation: document.getElementById('operation').value
+        operation: Number(document.getElementById('operation').value)
     };
 
     try {
