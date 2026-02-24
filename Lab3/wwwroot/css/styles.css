@@ -1,0 +1,83 @@
+:root {
+    color-scheme: light;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(135deg, #eef2ff, #e0f2fe);
+}
+
+.calculator-page {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+}
+
+.calculator-card {
+    width: min(480px, 100%);
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+    padding: 24px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.subtitle {
+    margin-top: 8px;
+    color: #475569;
+}
+
+.calculator-form {
+    margin-top: 20px;
+    display: grid;
+    gap: 14px;
+}
+
+label {
+    display: grid;
+    gap: 6px;
+    font-weight: 600;
+}
+
+input,
+select,
+button {
+    font: inherit;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    padding: 10px 12px;
+}
+
+button {
+    border: none;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1e40af;
+}
+
+.result-panel {
+    margin-top: 22px;
+    padding: 14px;
+    border-radius: 12px;
+    background: #f8fafc;
+}
+
+.expression {
+    color: #334155;
+}
+
+.error {
+    color: #b91c1c;
+    margin-bottom: 0;
+    min-height: 1.2em;
+}
