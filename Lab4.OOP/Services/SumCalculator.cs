@@ -1,22 +1,21 @@
-namespace Lab4.OopApp.Services;
+namespace Lab4.OOP.Services;
 
-public sealed class SquareSumCalculator
+public sealed class SumCalculator
 {
     private readonly NumberAnalyzer _analyzer;
 
-    public SquareSumCalculator(NumberAnalyzer analyzer)
+    public SumCalculator(NumberAnalyzer analyzer)
     {
         _analyzer = analyzer;
     }
 
-    public long CalculateUpTo(int upperLimit)
+    public long Calculate(int upperLimit)
     {
         long sum = 0;
 
         for (var value = 1; value <= upperLimit; value++)
         {
-            var classification = _analyzer.Analyze(value);
-            if (classification.IsPrimeOrPerfect)
+            if (_analyzer.Analyze(value).IsPrimeOrPerfect)
             {
                 sum += 1L * value * value;
             }

@@ -1,4 +1,4 @@
-using Lab4.OopApp.Services;
+using Lab4.OOP.Services;
 
 Console.Write("Enter upper bound: ");
 var input = Console.ReadLine();
@@ -9,7 +9,7 @@ if (!int.TryParse(input, out var upperLimit) || upperLimit < 1)
     return;
 }
 
-var calculator = new SquareSumCalculator(new NumberAnalyzer());
-var result = calculator.CalculateUpTo(upperLimit);
+var calculator = new SumCalculator(new NumberAnalyzer());
+var result = calculator.Calculate(upperLimit);
 
 Console.WriteLine($"Sum of squares = {result}");

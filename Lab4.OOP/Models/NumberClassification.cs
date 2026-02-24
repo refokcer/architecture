@@ -1,4 +1,4 @@
-namespace Lab4.OopApp.Models;
+namespace Lab4.OOP.Models;
 
 public sealed class NumberClassification
 {
@@ -12,6 +12,5 @@ public sealed class NumberClassification
     public int Value { get; }
     public bool IsPrime { get; }
     public bool IsPerfect { get; }
-
     public bool IsPrimeOrPerfect => IsPrime || IsPerfect;
 }

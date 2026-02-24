@@ -1,6 +1,6 @@
-using Lab4.OopApp.Models;
+using Lab4.OOP.Models;
 
-namespace Lab4.OopApp.Services;
+namespace Lab4.OOP.Services;
 
 public sealed class NumberAnalyzer
 {
@@ -34,20 +34,22 @@ public sealed class NumberAnalyzer
             return false;
         }
 
-        var divisorsSum = 1;
+        var sum = 1;
         for (var divisor = 2; divisor * divisor <= number; divisor++)
         {
-            if (number % divisor == 0)
+            if (number % divisor != 0)
             {
-                divisorsSum += divisor;
-                var pairDivisor = number / divisor;
-                if (pairDivisor != divisor)
-                {
-                    divisorsSum += pairDivisor;
-                }
+                continue;
+            }
+
+            sum += divisor;
+            var pairDivisor = number / divisor;
+            if (pairDivisor != divisor)
+            {
+                sum += pairDivisor;
             }
         }
 
-        return divisorsSum == number;
+        return sum == number;
     }
 }
