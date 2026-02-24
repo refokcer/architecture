@@ -1,10 +1,23 @@
-﻿namespace Lab1
+using Lab1.Data;
+using Lab1.Presentation;
+using Lab1.Services;
+
+namespace Lab1;
+
+internal class Program
 {
-    internal class Program
+    private static void Main()
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello, World!");
-        }
+        var t = LabInputData.Stages;
+        var n = LabInputData.Employees;
+        var l = LabInputData.LinesOfCode;
+
+        var nModel = ModelFitter.FitExponential(t, n);
+        var lModel = ModelFitter.FitExponential(t, l);
+        var powerModel = ModelFitter.FitPowerLaw(n, l);
+
+        ReportPrinter.PrintHeader();
+        ReportPrinter.PrintModels(nModel, lModel, powerModel);
+        ReportPrinter.PrintComparisonTable(t, n, l, nModel, lModel, powerModel);
     }
 }
