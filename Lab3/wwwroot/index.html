@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab3 — Client-Server Calculator</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <main class="calculator-page">
+        <section class="calculator-card" aria-label="Калькулятор">
+            <h1>Калькулятор (Client-Server)</h1>
+            <p class="subtitle">Усі обчислення виконуються сервером через HTTP API.</p>
+
+            <form id="calculator-form" class="calculator-form">
+                <label>
+                    Перше число
+                    <input id="leftOperand" type="number" step="any" required>
+                </label>
+
+                <label>
+                    Операція
+                    <select id="operation" required>
+                        <option value="0">+</option>
+                        <option value="1">−</option>
+                        <option value="2">×</option>
+                        <option value="3">÷</option>
+                    </select>
+                </label>
+
+                <label>
+                    Друге число
+                    <input id="rightOperand" type="number" step="any" required>
+                </label>
+
+                <button type="submit">Обчислити</button>
+            </form>
+
+            <div class="result-panel">
+                <p><strong>Результат:</strong> <span id="result">—</span></p>
+                <p id="expression" class="expression"></p>
+                <p id="error" class="error" role="alert"></p>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/calculatorApi.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
