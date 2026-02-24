@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab5 — Library SOLID App</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>📚 Library Management (SOLID)</h1>
+
+      <section class="card">
+        <h2>Пошук книги</h2>
+        <input id="searchInput" type="text" placeholder="Введіть назву або автора" />
+        <button id="searchBtn">Знайти</button>
+        <ul id="booksList"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Оренда книги</h2>
+        <label>
+          Користувач:
+          <select id="userSelect"></select>
+        </label>
+        <label>
+          Книга:
+          <select id="bookSelect"></select>
+        </label>
+        <button id="rentBtn">Орендувати</button>
+        <p id="rentResult"></p>
+      </section>
+
+      <section class="card">
+        <h2>Логи</h2>
+        <ul id="logs"></ul>
+      </section>
+    </main>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
