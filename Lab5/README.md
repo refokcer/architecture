@@ -17,3 +17,7 @@ dotnet run --project Lab5/Lab5.csproj
 - `Infrastructure` — in-memory репозиторії
 - `Presentation` — консольний UI
 - `Documentation` — звіт по SOLID
+
+
+## SOLID
+- Детальна мапа реалізації всіх 5 принципів: `Documentation/Report.md`.

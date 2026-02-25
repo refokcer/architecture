@@ -10,43 +10,37 @@
 3. орендувати книги;
 4. створювати й активувати/деактивувати облікові записи користувачів.
 
-## Де, як і навіщо реалізовані принципи SOLID
+## Де саме в коді реалізовані 5 принципів SOLID
 
 ### 1) SRP — Single Responsibility Principle
-- `Book` відповідає лише за стан книги та операції з її доступністю.
-- `RentalService` відповідає лише за сценарій оренди.
-- `UserAccountService` відповідає лише за керування акаунтами.
-- `ConsoleUi` відповідає лише за взаємодію з користувачем.
-
-**Навіщо:** кожен компонент простіше тестувати, підтримувати та змінювати.
+- `Domain/Models/Book.cs` — тільки стан книги та зміна доступності.
+- `Application/Services/RentalService.cs` — тільки сценарій оренди.
+- `Application/Services/UserAccountService.cs` — тільки керування користувачами.
+- `Presentation/ConsoleUi.cs` — тільки взаємодія з користувачем.
 
 ### 2) OCP — Open/Closed Principle
-- Для пошуку книг використовується `IBookSearchStrategy`.
-- Додано реалізації `TitleSearchStrategy` і `AuthorSearchStrategy`.
-- Щоб додати новий тип пошуку (наприклад, за жанром), достатньо створити нову стратегію без зміни `BookCatalogService`.
-
-**Навіщо:** система легко розширюється без ризику зламати існуючу логіку.
+- `Domain/Abstractions/IBookSearchStrategy.cs` + стратегії:
+  - `Domain/Strategies/TitleSearchStrategy.cs`,
+  - `Domain/Strategies/AuthorSearchStrategy.cs`.
+- `Application/Services/BookCatalogService.cs` працює з абстракцією стратегії і не змінюється при додаванні нових типів пошуку.
+- `Infrastructure/Repositories/BookSearchStrategyFactory.cs` дозволяє розширювати режими пошуку без змін сервісу каталогу.
 
 ### 3) LSP — Liskov Substitution Principle
-- Базовий тип `UserAccount` має нащадків `StandardUserAccount` і `PremiumUserAccount`.
-- Усі місця роботи з користувачами використовують абстракцію `UserAccount` і коректно працюють з будь-яким нащадком.
-
-**Навіщо:** дозволяє підміняти типи акаунтів без переписування клієнтського коду.
+- `Domain/Models/UserAccount.cs` — базовий тип.
+- `StandardUserAccount` і `PremiumUserAccount` підставляються замість `UserAccount` у `UserAccountService` та `RentalService` без поломки логіки.
 
 ### 4) ISP — Interface Segregation Principle
-- Інтерфейси поділені на вузькі контракти:
-  - `IReadOnlyBookRepository` (читання книг),
-  - `IBookInventoryRepository` (оновлення інвентарю),
-  - `IUserAccountRepository`,
-  - `IRentalRepository`.
-
-**Навіщо:** клієнти залежать лише від потрібних операцій, а не від «товстого» інтерфейсу.
+- Розбиті вузькі інтерфейси:
+  - `IReadOnlyBookRepository` — тільки читання;
+  - `IBookInventoryRepository` — тільки оновлення інвентарю;
+  - `IUserAccountRepository` — операції з користувачами;
+  - `IRentalRepository` — операції з орендою;
+  - `IBookSearchStrategyFactory` — вибір стратегії пошуку.
 
 ### 5) DIP — Dependency Inversion Principle
-- Сервіси верхнього рівня (`BookCatalogService`, `RentalService`, `UserAccountService`) залежать від абстракцій, а не від конкретних класів.
-- Конкретні in-memory репозиторії реалізують ці абстракції.
-
-**Навіщо:** спрощує заміну сховища даних (наприклад, in-memory → SQL) без змін бізнес-логіки.
+- Сервіси в `Application/Services` залежать від абстракцій з `Domain/Abstractions`, а не від конкретних in-memory класів.
+- `ConsoleUi` також отримує фабрику пошуку через абстракцію `IBookSearchStrategyFactory`.
+- Конкретні реалізації (`InMemory*Repository`, `BookSearchStrategyFactory`) підключаються лише в `Program.cs` (composition root).
 
 ## Висновок
-У проєкті реалізовано всі 5 принципів SOLID. Завдяки цьому застосунок має чисту структуру, легко розширюється та підтримується.
+У проєкті реалізовано всі 5 принципів SOLID, причому кожен принцип прив’язано до конкретних файлів та ролей у системі.

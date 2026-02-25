@@ -17,10 +17,11 @@ var userRepository = new InMemoryUserAccountRepository(
 ]);
 
 var rentalRepository = new InMemoryRentalRepository();
+var searchStrategyFactory = new BookSearchStrategyFactory();
 
 var bookCatalogService = new BookCatalogService(bookRepository);
 var userAccountService = new UserAccountService(userRepository);
 var rentalService = new RentalService(bookRepository, bookRepository, userRepository, rentalRepository);
 
-var ui = new ConsoleUi(bookCatalogService, userAccountService, rentalService);
+var ui = new ConsoleUi(bookCatalogService, userAccountService, rentalService, searchStrategyFactory);
 ui.Run();

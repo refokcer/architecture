@@ -1,14 +1,13 @@
 using Lab5.Application.Services;
 using Lab5.Domain.Abstractions;
-using Lab5.Domain.Models;
-using Lab5.Domain.Strategies;
 
 namespace Lab5.Presentation;
 
 public sealed class ConsoleUi(
     BookCatalogService bookCatalogService,
     UserAccountService userAccountService,
-    RentalService rentalService)
+    RentalService rentalService,
+    IBookSearchStrategyFactory searchStrategyFactory)
 {
     public void Run()
     {
@@ -64,9 +63,7 @@ public sealed class ConsoleUi(
         Console.Write("Шукати за (title/author): ");
         var mode = Console.ReadLine();
 
-        IBookSearchStrategy strategy = mode?.Trim().ToLowerInvariant() == "author"
-            ? new AuthorSearchStrategy()
-            : new TitleSearchStrategy();
+        var strategy = searchStrategyFactory.Create(mode ?? string.Empty);
 
         var result = bookCatalogService.Search(query, strategy);
         if (result.Count == 0)
