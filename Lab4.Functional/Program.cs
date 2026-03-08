@@ -1,4 +1,8 @@
 using Lab4.Functional.Core;
+using System.Text;
+
+Console.InputEncoding = Encoding.UTF8;
+Console.OutputEncoding = Encoding.UTF8;
 
 Console.Write("Enter upper bound: ");
 var input = Console.ReadLine();

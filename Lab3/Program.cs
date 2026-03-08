@@ -1,5 +1,9 @@
 using System.Text.Json.Serialization;
 using Lab3.Services;
+using System.Text;
+
+Console.InputEncoding = Encoding.UTF8;
+Console.OutputEncoding = Encoding.UTF8;
 
 var builder = WebApplication.CreateBuilder(args);
 
