@@ -2,6 +2,10 @@ using Lab5.Application.Services;
 using Lab5.Domain.Models;
 using Lab5.Infrastructure.Repositories;
 using Lab5.Presentation;
+using System.Text;
+
+Console.InputEncoding = Encoding.UTF8;
+Console.OutputEncoding = Encoding.UTF8;
 
 var bookRepository = new InMemoryBookRepository(
 [

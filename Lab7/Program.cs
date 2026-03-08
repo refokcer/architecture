@@ -3,6 +3,7 @@ using Lab7.Infrastructure.Factories;
 using Lab7.Infrastructure.Services;
 using Lab7.Presentation;
 using WinFormsApp = System.Windows.Forms.Application;
+using System.Text;
 
 namespace Lab7;
 
@@ -11,6 +12,9 @@ internal static class Program
     [STAThread]
     private static void Main()
     {
+        Console.InputEncoding = Encoding.UTF8;
+        Console.OutputEncoding = Encoding.UTF8;
+
         ApplicationConfiguration.Initialize();
 
         var documentSession = new DocumentSession();
