@@ -12,8 +12,7 @@ internal static class Program
     [STAThread]
     private static void Main()
     {
-        Console.InputEncoding = Encoding.UTF8;
-        Console.OutputEncoding = Encoding.UTF8;
+        
 
         ApplicationConfiguration.Initialize();
 
